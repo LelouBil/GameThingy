@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
+
 public class NoteCreator : MonoBehaviour
 {
 
@@ -12,6 +13,8 @@ public class NoteCreator : MonoBehaviour
     public NotePair red;
     public NotePair blue;
     public NotePair yellow;
+
+    public SpriteRenderer spr;
 
     [Serializable]
     public struct NotePair
@@ -54,7 +57,8 @@ public class NoteCreator : MonoBehaviour
         {
             beatTime++;
             nextBeatTime = secPerBeat * beatTime;
-            InstNotes();
+            //InstNotes();
+            spr.color = new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
         }
     }
 
