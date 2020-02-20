@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Calculduscore : MonoBehaviour
+public class ScoreManager : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -30,14 +30,14 @@ public class Calculduscore : MonoBehaviour
         }
         if (time <= 0.5 && time > 0.4)
         {
-            Popup("meh");
+            Popup(meh);
             score++;
         }
     }
 
     void Popup(string msg)
     {
-        Debug.log();
+        Debug.Log(msg);
     }
 
 }
