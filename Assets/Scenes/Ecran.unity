@@ -222,7 +222,7 @@ MonoBehaviour:
     Manager: {fileID: 0}
     prefab: {fileID: 5232008955725879476, guid: 771681ae83a7cd741a36b7c7eb2916ab,
       type: 3}
-  tempo: 72
+  tempo: 97
   preview: 2
   secPerBeat: 0
   songPosition: 0
@@ -267,7 +267,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 88952a1c497e29743aabf025509e2107, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 402b4323c50752e409315c3f829df30d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
