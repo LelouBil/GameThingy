@@ -41,3 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 2979775235
+    locked: 0
+  - name: Ecran
+    uniqueID: 3729303901
+    locked: 0
+  - name: Points
+    uniqueID: 1548032221
+    locked: 0
