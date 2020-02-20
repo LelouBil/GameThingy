@@ -14,7 +14,7 @@ public class MenuController : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Scenes/Game");
+        SceneManager.LoadScene("Scenes/Ecran");
     }
    
 }
