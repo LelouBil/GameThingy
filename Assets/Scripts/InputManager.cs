@@ -24,38 +24,24 @@ public class InputManager : MonoBehaviour
         float notAbs = transform.position.x - nextNote.Peek().transform.position.x;
         float distance = Math.Abs(notAbs);
         //Get distance!
-
+        bool triggered = false;
         if (Input.GetKeyDown(watchFor))
         {
-            values.Add(notAbs);
-            average = values.Average();
-            Debug.Log(average);
+            if (distance > 0.5 && notAbs < 0)
+            {
+                return;
+            }
+
+            triggered = true;
+            nextNote.Dequeue();
+            
         }
-        if (distance > 0.5 && notAbs < 0)
-        {
-            return;
-        }
-        
-        if (distance <= perfect && Input.GetKeyDown(watchFor))
-        {
-            Debug.Log("Perfect !");
-            Destroy(nextNote.Dequeue().gameObject);
-        }
-        else if (distance <= good && Input.GetKeyDown(watchFor))
-        {
-            Debug.Log("good");
-            Destroy(nextNote.Dequeue().gameObject);
-        }
-        else if (distance <= bad && Input.GetKeyDown(watchFor))
-        {
-            Debug.Log("bad...");
-            Destroy(nextNote.Dequeue().gameObject);
-        }
-        else if (distance > 0.5 && notAbs > 0)
+        if (distance > 0.5 && notAbs > 0)
         {
             Debug.Log("missed");
+            if(triggered) return;
             Destroy(nextNote.Dequeue().gameObject);
         }
-
+        
     }
 }

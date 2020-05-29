@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 
@@ -7,8 +8,6 @@ public class NoteCreator : MonoBehaviour
 
     public SequenceManager SequenceManager;
 
-    public AudioSource AudioSource;
-    
     public NotePair green;
     public NotePair red;
     public NotePair blue;
@@ -21,48 +20,33 @@ public class NoteCreator : MonoBehaviour
     {
         public InputManager Manager;
         public NoteMover prefab;
-        
     }
     
-    public float tempo;
-
     public int preview;
 
     public float secPerBeat;
 
-    public float songPosition;
-    
-    public float beatTime;
-
-    public float nextBeat = 0f;
-    public float lastBeatTime;
-    public float nextBeatTime;
-
-    private float difference;
-
-    public static int machin;
-
-
     private void Start()
     {
         SequenceManager.LoadFile();
-        secPerBeat = 60f / tempo;
-        AudioSource.Play();
+        // secPerBeat = 60f / tempo;
+        // double initTime = AudioSettings.dspTime;
+        // AudioSource.PlayScheduled(initTime);
     }
 
     public void Update()
     {
-        songPosition = AudioSource.time;
-        if ((songPosition - Time.deltaTime) >= nextBeatTime)
-        {
-            beatTime++;
-            nextBeatTime = secPerBeat * beatTime;
-            //InstNotes();
-            spr.color = new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
-        }
+        // songPosition = AudioSource.time;
+        // if ((songPosition - Time.deltaTime) >= nextBeatTime)
+        // {
+        //     beatTime++;
+        //     nextBeatTime = secPerBeat * beatTime;
+        //     InstNotes();
+        // }
     }
+    
 
-    private void InstNotes()
+    public void InstNotes()
     {
         if (SequenceManager.sequences.Count == 0) return;
         var current = SequenceManager.sequences.Dequeue();
