@@ -22,8 +22,8 @@ public class NoteMover : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        transform.position -= new Vector3( (-movespeed) * Time.deltaTime, 0, 0);
+        transform.position -= new Vector3( (-movespeed) * Time.fixedDeltaTime, 0, 0);
     }
 }

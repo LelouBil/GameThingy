@@ -57,8 +57,13 @@ public class NoteCreator : MonoBehaviour
         if(current.Right) InstNote(blue);
     }
 
+    private bool colorw = false;
+
+    public GameObject colorIndicator;
     private void InstNote(NotePair note)
     {
+        colorIndicator.GetComponent<SpriteRenderer>().color = colorw ? Color.black : Color.white;
+        colorw = !colorw;
         var nt = Instantiate(note.prefab);
         nt.movespeed = NoteMover.goal / (secPerBeat * preview);
         nt.Manager = note.Manager;
