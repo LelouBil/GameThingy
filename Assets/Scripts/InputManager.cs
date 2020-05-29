@@ -33,10 +33,17 @@ public class InputManager : MonoBehaviour
             }
 
             triggered = true;
-            nextNote.Dequeue();
+            var n = nextNote.Dequeue();
+            Destroy(n.gameObject);
+            Debug.Log("got it");
             
         }
-        if (distance > 0.5 && notAbs > 0)
+
+        if (Math.Abs(distance) < 0.0001)
+        {
+            nextNote.Peek().gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
+        }
+        if (distance > 0.2 && notAbs > 0)
         {
             Debug.Log("missed");
             if(triggered) return;

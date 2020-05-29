@@ -35,7 +35,7 @@ public class BeatCounter : MonoBehaviour {
 		Creator.secPerBeat = 60f / audioBpm;
 		
 		samplePeriod = (60f / (audioBpm * BeatDecimalValues.values[(int)beatValue])) * audioSource.clip.frequency;
-
+		Debug.Log(sampleOffset);
 		if (beatOffset != BeatValue.None) {
 			sampleOffset = (60f / (audioBpm * BeatDecimalValues.values[(int)beatOffset])) * audioSource.clip.frequency;
 			if (negativeBeatOffset) {
@@ -102,7 +102,7 @@ public class BeatCounter : MonoBehaviour {
 				nextBeatSample += samplePeriod;
 			}
 
-			yield return new WaitForSeconds(loopTime / 1000f);
+			yield return new WaitForFixedUpdate();
 		}
 	}
 

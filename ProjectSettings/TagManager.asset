@@ -50,3 +50,6 @@ TagManager:
   - name: Points
     uniqueID: 1548032221
     locked: 0
+  - name: FrontPoints
+    uniqueID: 2246198219
+    locked: 0
