@@ -27,7 +27,7 @@ public class ScoreManager : MonoBehaviour
         Debug.Log("Distance : " + time);
         if (time <= 0.02) {
             Popup(excellent);
-            score=score+3;
+            score = score + 3;
             combo++;
             if (combo >= 3) {
                 score = score + combo;
