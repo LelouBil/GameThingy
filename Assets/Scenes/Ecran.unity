@@ -249,7 +249,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 333849329}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 6e94440c70a9b434a9039590f43797ff, type: 2}
   m_CullingMode: 0
@@ -299,7 +299,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 5119414718231133031, guid: a3556e18bea15384881f1e019d2194b9,
+  m_Sprite: {fileID: -6000175863129344762, guid: a3556e18bea15384881f1e019d2194b9,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -319,7 +319,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 333849329}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.968, y: -0.597, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 0}
   m_Children: []
   m_Father: {fileID: 1885879687}
@@ -684,6 +684,7 @@ GameObject:
   - component: {fileID: 1223170724}
   - component: {fileID: 1223170723}
   - component: {fileID: 1223170725}
+  - component: {fileID: 1223170726}
   m_Layer: 0
   m_Name: Screen
   m_TagString: Untagged
@@ -886,7 +887,7 @@ MonoBehaviour:
   loopTime: 0
   audioSource: {fileID: 1223170722}
   observers:
-  - {fileID: 1314247989}
+  - {fileID: 1223170718}
   Creator: {fileID: 1223170719}
 --- !u!212 &1223170725
 SpriteRenderer:
@@ -938,6 +939,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1223170726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1223170718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dc6bf181cdb14aab9c6f511c928132c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beatWindow: 0
+  beatMask: 0
 --- !u!1 &1276726525
 GameObject:
   m_ObjectHideFlags: 0
@@ -1408,6 +1423,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1314247991}
+  - component: {fileID: 1314247992}
   - component: {fileID: 1314247990}
   m_Layer: 0
   m_Name: Musicians
@@ -1428,7 +1444,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dc6bf181cdb14aab9c6f511c928132c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beatWindow: 5
+  beatWindow: 0
   beatMask: 0
 --- !u!4 &1314247991
 Transform:
@@ -1448,6 +1464,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1314247992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1314247989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d506793ee07e645d28f8aea464882c05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  beatValue: 1
+  beatScalar: 1
+  beatOffset: 3
+  negativeBeatOffset: 0
+  beatType: 2
+  loopTime: 1
+  audioSource: {fileID: 1223170722}
+  observers:
+  - {fileID: 1314247989}
+  Creator: {fileID: 0}
 --- !u!1 &1466251707
 GameObject:
   m_ObjectHideFlags: 0
@@ -1806,7 +1844,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1885879686}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.661, y: 0.575, z: 0}
+  m_LocalPosition: {x: -0.33, y: -0.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 333849332}
@@ -1828,6 +1866,14 @@ MonoBehaviour:
   manager: {fileID: 1466251708}
   animator: {fileID: 333849330}
   observer: {fileID: 0}
+  down: {fileID: -2566577473769618844, guid: a3556e18bea15384881f1e019d2194b9, type: 3}
+  up: {fileID: -6000175863129344762, guid: a3556e18bea15384881f1e019d2194b9, type: 3}
+  cd: {fileID: -2566577473769618844, guid: a3556e18bea15384881f1e019d2194b9, type: 3}
+  cu: {fileID: -6000175863129344762, guid: a3556e18bea15384881f1e019d2194b9, type: 3}
+  spr: {fileID: 333849331}
+  missCounter: -1
+  noteData: []
+  data: 
 --- !u!1 &1999317760
 GameObject:
   m_ObjectHideFlags: 0

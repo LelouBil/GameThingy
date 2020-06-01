@@ -33,6 +33,7 @@ public class NoteCreator : MonoBehaviour
     private void Start()
     {
         goal = green.Manager.transform.position.x - noteParent.transform.position.x;
+        GetComponent<BeatObserver>().WhenBeat += InstNotes;
         SequenceManager.LoadFile();
         // secPerBeat = 60f / tempo;
         // double initTime = AudioSettings.dspTime;

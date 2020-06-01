@@ -30,19 +30,16 @@ public class InputManager : MonoBehaviour
         float distance = Math.Abs(notAbs);
         //Get distance!
         bool triggered = false;
-        if (Math.Abs(distance) < 0.001)
-        {
-            beatTime = Time.time;
-        }
         if (Input.GetKeyDown(watchFor))
         {
-            if (distance > 0.2 && notAbs < 0)
+            if (distance > 0.18f && notAbs < 0)
             {
                 return;
             }
 
             triggered = true;
-            gameManager.scoreManager.UpdateScore(Time.time - beatTime);
+            
+            gameManager.scoreManager.UpdateScore(distance,this);
             var n = nextNote.Dequeue();
             Destroy(n.gameObject);
         }
@@ -59,10 +56,10 @@ public class InputManager : MonoBehaviour
             GetComponent<SpriteRenderer>().color = Color.white;
         }
         
-        if (Time.time - beatTime > 0.5 && notAbs > 0)
+        if (distance > 0.117 && notAbs > 0)
         {
             Debug.Log("missed");
-            gameManager.scoreManager.UpdateScore(Time.time - beatTime);
+            gameManager.scoreManager.UpdateScore(0.20f,this);
             if(triggered) return;
             Destroy(nextNote.Dequeue().gameObject);
         }

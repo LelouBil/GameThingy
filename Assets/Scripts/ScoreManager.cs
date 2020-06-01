@@ -21,10 +21,11 @@ public class ScoreManager : MonoBehaviour
     string missed = "Missed";
 
     // Update is called once per frame
-    public void UpdateScore(float time)
+    public void UpdateScore(float time, InputManager manager)
     {
 
-        if (time <= 0.2) {
+        Debug.Log("Distance : " + time);
+        if (time <= 0.02) {
             Popup(excellent);
             score=score+3;
             combo++;
@@ -32,19 +33,27 @@ public class ScoreManager : MonoBehaviour
                 score = score + combo;
             }
         }
-        else if (time <= 0.4 && time > 0.2)
+        else if (time <= 0.04)
         {
             Popup(good);
             score = score + 2;
         }
-        else if (time <= 0.5 && time > 0.4)
+        else if (time <= 0.117f)
         {
             Popup(meh);
             score++;
             combo = 0;
         }
-        else if (time > 0.5)
+        else
         {
+            if (manager.musician != null)
+            {
+                manager.musician.up = manager.musician.down;
+                //manager.musician.counter = 0;
+                manager.musician.transform.rotation = Quaternion.Euler(0, 0, 90);
+                manager.musician.missCounter = 0;
+            }
+
             Popup(missed);
             combo = 0;
         }

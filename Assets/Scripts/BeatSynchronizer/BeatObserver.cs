@@ -18,6 +18,10 @@ public class BeatObserver : MonoBehaviour {
 
 	[Range(0, 500)]
 	public float beatWindow = 0;	// in milliseconds
+
+	public delegate void WhenBeatHandler();
+	
+	public event WhenBeatHandler WhenBeat;
 	
 	[HideInInspector]
 	public BeatType beatMask;
@@ -35,6 +39,7 @@ public class BeatObserver : MonoBehaviour {
 	public void BeatNotify (BeatType beatType)
 	{
 		beatMask |= beatType;
+		WhenBeat?.Invoke();
 		StartCoroutine(WaitOnBeat(beatType));
 	}
 
