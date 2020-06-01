@@ -13,7 +13,11 @@ public class NoteCreator : MonoBehaviour
     public NotePair blue;
     public NotePair yellow;
 
+    public GameObject noteParent;
+
     public SpriteRenderer spr;
+
+    public ScoreManager scr;
 
     [Serializable]
     public struct NotePair
@@ -28,6 +32,7 @@ public class NoteCreator : MonoBehaviour
 
     private void Start()
     {
+        goal = green.Manager.transform.position.x - noteParent.transform.position.x;
         SequenceManager.LoadFile();
         // secPerBeat = 60f / tempo;
         // double initTime = AudioSettings.dspTime;
@@ -60,12 +65,16 @@ public class NoteCreator : MonoBehaviour
     private bool colorw = false;
 
     public GameObject colorIndicator;
+    
+    public static float goal = -7.34F;
     private void InstNote(NotePair note)
     {
         colorIndicator.GetComponent<SpriteRenderer>().color = colorw ? Color.black : Color.white;
         colorw = !colorw;
-        var nt = Instantiate(note.prefab);
-        nt.movespeed = NoteMover.goal / (secPerBeat * preview);
+        var nt = Instantiate(note.prefab,noteParent.transform);
+        nt.movespeed = goal / (secPerBeat * preview);
         nt.Manager = note.Manager;
+        Vector3 pos = new Vector3(noteParent.transform.position.x,note.Manager.transform.position.y);
+        nt.transform.position = pos;
     }
 }

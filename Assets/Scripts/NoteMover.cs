@@ -10,11 +10,12 @@ public class NoteMover : MonoBehaviour
 
     public InputManager Manager;
 
-    public static float goal = -7.3f;
+    
     
     // Start is called before the first frame update
     void Start()
     {
+        
         if (Manager != null)
         {
             Manager.nextNote.Enqueue(this);

@@ -17,7 +17,7 @@ using SynchronizerData;
 public class BeatObserver : MonoBehaviour {
 
 	[Range(0, 500)]
-	public float beatWindow = 10f;	// in milliseconds
+	public float beatWindow = 0;	// in milliseconds
 	
 	[HideInInspector]
 	public BeatType beatMask;

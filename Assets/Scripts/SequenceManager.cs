@@ -13,7 +13,7 @@ public class SequenceManager : MonoBehaviour
     {
         foreach (string s in sequenceFile.text.Split('\n'))
         {
-            sequences.Enqueue(ParseSequence(s));
+            if(s != "" && s != "\r" && !s.StartsWith("/")) sequences.Enqueue(ParseSequence(s));
         }
     }
 
@@ -29,7 +29,7 @@ public class SequenceManager : MonoBehaviour
 
     public struct Sequence
     {
-        public Sequence(bool up, bool right, bool left, bool down)
+        public Sequence(bool left, bool down, bool up, bool right)
         {
             Up = up;
             Right = right;
