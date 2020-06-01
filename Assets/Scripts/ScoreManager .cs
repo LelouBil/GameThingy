@@ -14,6 +14,7 @@ public class ScoreManager : MonoBehaviour
     string meh = "meh";
 
     int score;
+    int combo;
 
     // Update is called once per frame
     void Updatescore(float time)
@@ -21,7 +22,11 @@ public class ScoreManager : MonoBehaviour
 
         if (time <= 0.2) {
             Popup(excellent);
-            score=score+3;
+            score = score + 3;
+            combo++;
+            if (combo >= 3) {
+                score = score + combo;
+            }
         }
         if (time <= 0.4 && time > 0.2)
         {
@@ -32,6 +37,7 @@ public class ScoreManager : MonoBehaviour
         {
             Popup(meh);
             score++;
+            combo=0
         }
     }
 
