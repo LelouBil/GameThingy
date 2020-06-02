@@ -94,6 +94,7 @@ public class BeatCounter : MonoBehaviour {
 			currentSample = (float)AudioSettings.dspTime * audioSource.clip.frequency;
 			
 			if (currentSample >= (nextBeatSample + sampleOffset)) {
+				Debug.Log("ssadsd");
 				foreach (GameObject obj in observers) {
 					obj.GetComponent<BeatObserver>().BeatNotify(beatType);
 				}
