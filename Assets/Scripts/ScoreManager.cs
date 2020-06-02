@@ -15,9 +15,12 @@ public class ScoreManager : MonoBehaviour
     string excellent = "excellent";
     string good = "good";
     string meh = "meh";
+    string rank;
 
     int score;
     int combo;
+    int Scoremax;
+    int comboMax;
     string missed = "Missed";
 
     // Update is called once per frame
@@ -29,6 +32,9 @@ public class ScoreManager : MonoBehaviour
             Popup(excellent);
             score = score + 3;
             combo++;
+            if (combo >= 11) {
+                combo = combo - 1;
+            }
             if (combo >= 3) {
                 score = score + combo;
             }
@@ -42,7 +48,6 @@ public class ScoreManager : MonoBehaviour
         {
             Popup(meh);
             score++;
-            combo = 0;
         }
         else
         {
@@ -57,6 +62,41 @@ public class ScoreManager : MonoBehaviour
             Popup(missed);
             combo = 0;
         }
+        Scoremax = Scoremax + 3 + comboMax
+        comboMax++
+        if (comboMax >= 11)
+            {
+                comboMax = comboMax - 1;
+            }
+            if (comboMax >= 3)
+            {
+                Scoremax = Scoremax + comboMax;
+            }
+        if (8 * score <= ScoreMax) {
+            rank = "E"
+               }
+        if (8 * score >= ScoreMax && 7 * score <= ScoreMax){
+            rank = "D"
+               }
+        if (7 * score >= ScoreMax && 6 * score <= ScoreMax) {
+            rank = "C"
+               }
+        if (6 * score >= ScoreMax && 4 * score <= ScoreMax){
+                rank = "B"
+               }
+        if (4 * score >= ScoreMax && 2 * score <= ScoreMax)
+        {
+            rank = "A"
+        if (2 * score >= ScoreMax && score < ScoreMax){
+                rank = "S"
+               }
+        if (score==scoreMax){
+                rank = "GOD"
+               }
+        }
+    }
+    }
+
 
         scoreNumberText.text = "Score : " + score;
     }
