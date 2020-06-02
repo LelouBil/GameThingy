@@ -19,7 +19,7 @@ public class ScoreManager : MonoBehaviour
 
     int score;
     int combo;
-    int Scoremax;
+    public int ScoreMax;
     int comboMax;
     string missed = "Missed";
 
@@ -62,40 +62,40 @@ public class ScoreManager : MonoBehaviour
             Popup(missed);
             combo = 0;
         }
-        Scoremax = Scoremax + 3 + comboMax
-        comboMax++
+        ScoreMax = ScoreMax + 3 + comboMax;
+        comboMax++;
         if (comboMax >= 11)
             {
                 comboMax = comboMax - 1;
             }
             if (comboMax >= 3)
             {
-                Scoremax = Scoremax + comboMax;
+                ScoreMax = ScoreMax + comboMax;
             }
         if (8 * score <= ScoreMax) {
-            rank = "E"
+            rank = "E";
                }
         if (8 * score >= ScoreMax && 7 * score <= ScoreMax){
-            rank = "D"
+            rank = "D";
                }
         if (7 * score >= ScoreMax && 6 * score <= ScoreMax) {
-            rank = "C"
+            rank = "C";
                }
         if (6 * score >= ScoreMax && 4 * score <= ScoreMax){
-                rank = "B"
+            rank = "B";
                }
         if (4 * score >= ScoreMax && 2 * score <= ScoreMax)
         {
-            rank = "A"
+            rank = "A";
         if (2 * score >= ScoreMax && score < ScoreMax){
-                rank = "S"
+                rank = "S";
                }
-        if (score==scoreMax){
-                rank = "GOD"
+        if (score==ScoreMax){
+                rank = "GOD";
                }
         }
-    }
-    }
+    
+    
 
 
         scoreNumberText.text = "Score : " + score;
