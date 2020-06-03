@@ -50,13 +50,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		
         if (finished && Input.anyKeyDown)
         {
             SceneManager.LoadScene("Menu");
         }
-
-
-        if (beatSynchronizer.audioSource.time >= beatSynchronizer.audioSource.clip.length || Input.GetKeyDown(KeyCode.Space))
+        if (beatSynchronizer.audioSource.time >= beatSynchronizer.audioSource.clip.length)
         {
             beatSynchronizer.audioSource.Pause();
             finished = true;
