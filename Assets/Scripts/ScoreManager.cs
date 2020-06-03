@@ -9,12 +9,14 @@ public class ScoreManager : MonoBehaviour
 
     public Text scoreNumberText;
 
+    public Text comboText;
+
     public GameObject scoreTextPrefab;
     
     
     string excellent = "excellent";
     string good = "good";
-    string meh = "meh";
+    string meh = "meh";    
     string rank;
 
     int score;
@@ -125,6 +127,7 @@ public class ScoreManager : MonoBehaviour
 
 
         scoreNumberText.text = "Score : " + score;
+        comboText.text = "Combo : " + combo;
     }
 
     void Popup(string msg)
