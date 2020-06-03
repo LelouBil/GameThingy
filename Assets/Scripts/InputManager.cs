@@ -21,6 +21,7 @@ public class InputManager : MonoBehaviour
     private List<float> values = new List<float>();
 
     public float average;
+    
     public Musician musician;
 
     private void Update()

@@ -740,6 +740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sequenceFile: {fileID: 4900000, guid: 087a806abb0834f48905f4a9100c6681, type: 3}
+  textFile: 
 --- !u!4 &1223170721
 Transform:
   m_ObjectHideFlags: 0
@@ -865,7 +866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91b7313f19d4448c194f6d6daebf9a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bpm: 131
+  bpm: 128
   startDelay: 0
 --- !u!114 &1223170724
 MonoBehaviour:
@@ -882,9 +883,9 @@ MonoBehaviour:
   beatValue: 5
   beatScalar: 1
   beatOffset: 3
-  negativeBeatOffset: 0
+  negativeBeatOffset: 1
   beatType: 2
-  loopTime: 0
+  loopTime: 5
   audioSource: {fileID: 1223170722}
   observers:
   - {fileID: 1223170718}
