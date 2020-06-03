@@ -33,11 +33,11 @@ public class BeatSynchronizer : MonoBehaviour {
 
 	public void Pause()
 	{
-		_audioSource.Pause();
+		AudioListener.pause = true;
 	}
 	
 	public void Resume()
 	{
-		_audioSource.Play();
+		AudioListener.pause = false;
 	}
 }
