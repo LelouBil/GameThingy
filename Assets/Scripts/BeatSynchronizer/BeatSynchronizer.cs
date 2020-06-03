@@ -14,30 +14,33 @@ public class BeatSynchronizer : MonoBehaviour {
 	public static event AudioStartAction OnAudioStart;
 
 	public float dspDelay;
-	private AudioSource _audioSource;
+	public AudioSource audioSource;
 
 
 	private void Start()
 	{
-		_audioSource = GetComponent<AudioSource>();
+		audioSource = GetComponent<AudioSource>();
 	}
 
 	public void StartMusic()
 	{
 		double initTime = AudioSettings.dspTime;
-		_audioSource.PlayScheduled(initTime + startDelay);
+		audioSource.PlayScheduled(initTime + startDelay);
 		if (OnAudioStart != null) {
 			OnAudioStart(initTime + startDelay);
 		}
 	}
 
+	public double pauseTime;
+
 	public void Pause()
 	{
-		AudioListener.pause = true;
+		audioSource.Pause();
+		pauseTime = AudioSettings.dspTime;
 	}
 	
 	public void Resume()
 	{
-		AudioListener.pause = false;
+		audioSource.UnPause();
 	}
 }

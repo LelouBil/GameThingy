@@ -16,13 +16,15 @@ public class ScoreManager : MonoBehaviour
     
     string excellent = "excellent";
     string good = "good";
-    string meh = "meh";    
-    string rank;
+    string meh = "meh";
+    public string rank;
 
-    int score;
+    public int score;
     int combo;
     public int ScoreMax;
     int comboMax;
+
+    public int bestCombo;
     string missed = "Missed";
 
     // Update is called once per frame
@@ -32,7 +34,7 @@ public class ScoreManager : MonoBehaviour
         Debug.Log("Distance : " + time);
         if (time <= 0.02)
         {
-            Popup(excellent);
+            Popup(excellent,new Color32(237, 227, 40, 255));
             if (manager.musician.currentNote.Count == 0)
             {
                 manager.musician.currentNote = manager.musician.notesData.excellent;
@@ -48,10 +50,12 @@ public class ScoreManager : MonoBehaviour
             if (combo >= 3) {
                 score = score + combo;
             }
+
+            if (combo >= bestCombo) bestCombo = combo;
         }
         else if (time <= 0.04)
         {
-            Popup(good);
+            Popup(good, new Color32(20, 163, 12, 255));
             if (manager.musician.currentNote.Count == 0)
             {
                 manager.musician.currentNote = manager.musician.notesData.good;
@@ -62,7 +66,7 @@ public class ScoreManager : MonoBehaviour
         }
         else if (time <= 0.117f)
         {
-            Popup(meh);
+            Popup(meh, new Color32(219, 79, 35, 255));
             if (manager.musician.currentNote.Count == 0)
             {
                 manager.musician.currentNote = manager.musician.notesData.meh;
@@ -87,7 +91,7 @@ public class ScoreManager : MonoBehaviour
                 manager.musician.noteCounter = 0;
             }
 
-            Popup(missed);
+            Popup(missed,new Color32(0,0,0,0));
             combo = 0;
         }
         ScoreMax = ScoreMax + 3 + comboMax;
@@ -130,12 +134,12 @@ public class ScoreManager : MonoBehaviour
         comboText.text = "Combo : " + combo;
     }
 
-    void Popup(string msg)
+    void Popup(string msg, Color color)
     {
         var sc = Instantiate(scoreTextPrefab,scoreNumberText.transform.parent);
         var t = sc.GetComponent<ScoreText>();
         t.text = msg;
-        t.color = Color.white;
+        t.color = color;
         t.Fire();
     }
 

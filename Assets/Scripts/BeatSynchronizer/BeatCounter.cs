@@ -21,7 +21,7 @@ public class BeatCounter : MonoBehaviour {
 
 	public NoteCreator Creator;
 	
-	private float nextBeatSample;
+	public float nextBeatSample;
 	private float samplePeriod;
 	private float sampleOffset;
 	private float currentSample;
@@ -90,12 +90,15 @@ public class BeatCounter : MonoBehaviour {
 	/// </remarks>
 	///
 	public bool finished = false;
+
+	public float dspDelay;
+
 	IEnumerator BeatCheck ()
 	{
 		while (!finished) {
 			if (audioSource.isPlaying)
 			{
-				currentSample = (float) AudioSettings.dspTime * audioSource.clip.frequency;
+				currentSample = (float) (AudioSettings.dspTime - dspDelay) * audioSource.clip.frequency;
 
 				if (currentSample >= (nextBeatSample + sampleOffset))
 				{

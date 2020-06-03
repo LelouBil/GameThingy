@@ -7,8 +7,14 @@ public class GameManager : MonoBehaviour
 {
 
     public BeatSynchronizer beatSynchronizer;
+    
+    public BeatCounter beatCounter;
+
+    public BeatCounter otherCounter;
 
     public NoteCreator noteCreator;
+
+    public AudioSource pauseAudio;
 
     public ScoreManager scoreManager;
 
@@ -21,10 +27,14 @@ public class GameManager : MonoBehaviour
 
     public bool paused = false;
 
+    public bool finished = false;
+
 
     public Text pauseText;
 
     public GameObject pauseTint;
+
+    public Finisher finishTint;
     
     // Start is called before the first frame update
     void Start()
@@ -37,7 +47,16 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.anyKeyDown && started == false)
+        if (beatSynchronizer.audioSource.time >= beatSynchronizer.audioSource.clip.length || Input.GetKeyDown(KeyCode.Space))
+        {
+            beatSynchronizer.audioSource.Pause();
+            finished = true;
+
+            StartCoroutine(EndCredits());
+        }
+        
+        
+        if (Input.anyKeyDown && !started && !finished )
         {
             started = true;
             Debug.Log("yay");
@@ -48,19 +67,12 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (started && Input.GetKeyDown(KeyCode.Escape))
+        if (started && Input.GetKeyDown(KeyCode.Escape) && !finished)
         {
             if (paused)
             {
-                pauseText.gameObject.SetActive(false);
-                pauseTint.gameObject.SetActive(false);
-                foreach (var o in inactive)
-                {
-                    if (o != null) o.move = true;
-                }
-
-                beatSynchronizer.Resume();
-                paused = false;
+                pauseAudio.Stop();
+                StartCoroutine(PauseWait());
             }
             else
             {
@@ -78,9 +90,50 @@ public class GameManager : MonoBehaviour
                 
                     inactive.Add(o.GetComponent<NoteMover>());
                 }
-
+                pauseAudio.Play();
                 paused = true;
             }
         }
+    }
+
+    private int pauseCounter = 3;
+
+    private IEnumerator PauseWait()
+    {
+        while (paused)
+        {
+            if (pauseCounter > 0)
+            {
+                pauseText.text = pauseCounter.ToString();
+                yield return new WaitForSeconds(1);
+                pauseCounter--;
+            }
+            else
+            {
+                pauseCounter = 3;
+                pauseText.text = "pause";
+                beatSynchronizer.Resume();
+                paused = false;
+                pauseText.gameObject.SetActive(false);
+                pauseTint.gameObject.SetActive(false);
+                foreach (var o in inactive)
+                {
+                    if (o != null) o.move = true;
+                }
+
+                beatCounter.dspDelay += (float) (AudioSettings.dspTime - beatSynchronizer.pauseTime);
+                otherCounter.dspDelay += (float) (AudioSettings.dspTime - beatSynchronizer.pauseTime);
+            }
+
+            
+        }
+    }
+
+    private IEnumerator EndCredits()
+    {
+        yield return new WaitForSeconds(5);
+
+        finishTint.Finish(this);
+
     }
 }
