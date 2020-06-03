@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         noteCreator.scr = scoreManager;
+
+        StartCoroutine(StartSequence());
     }
     
     List<NoteMover> inactive = new List<NoteMover>();
@@ -55,17 +57,6 @@ public class GameManager : MonoBehaviour
             StartCoroutine(EndCredits());
         }
         
-        
-        if (Input.anyKeyDown && !started && !finished )
-        {
-            started = true;
-            Debug.Log("yay");
-            beatSynchronizer.StartMusic();
-            foreach (var musician in musicians)
-            {
-                musician.RunGame();
-            }
-        }
 
         if (started && Input.GetKeyDown(KeyCode.Escape) && !finished)
         {
@@ -96,7 +87,108 @@ public class GameManager : MonoBehaviour
         }
     }
 
+
+    public AudioClip crowd;
+
+    public AudioSource sfx;
+
+    public Animator crowdAnimator;
+
+    public Animator yellow;
+    public Animator red;
+    public Animator green;
+    public Animator blue;
+
+    public IEnumerator StartSequence()
+    {
+        float speed = 1;
+        sfx.PlayOneShot(crowd);
+        while (speed > 0)
+        {
+            if (speed > 0.65) speed -= 0.04f;
+            else speed -= 0.28f;
+            crowdAnimator.speed = speed;
+            yield return new WaitForSeconds(1);
+        }
+        crowdAnimator.SetTrigger(Start1);
+        
+        yield return new WaitForSeconds(0.5f);
+        _clickspeed = 1/ (60f / beatSynchronizer.bpm);
+        crowdAnimator.speed = _clickspeed;
+        yellow.speed = _clickspeed;
+        red.speed = _clickspeed;
+        blue.speed = _clickspeed;
+        green.speed = _clickspeed;
+        yellow.SetTrigger(Jump);
+        yield return null;
+    }
+
+    private int clickcount;
+
+    public AudioClip click;
+    
+    
+    public void Click()
+    {
+        clickcount++;
+        sfx.PlayOneShot(click);
+        switch (clickcount)
+        {
+            case 1:
+                red.SetTrigger(Jump);
+                break;
+            case 2:
+                blue.SetTrigger(Jump);
+                break;
+            case 3:
+                green.SetTrigger(Jump);
+                break;
+            case 4:
+                red.SetTrigger(Jump);
+                blue.SetTrigger(Jump);
+                green.SetTrigger(Jump);
+                StartCoroutine(LaunchGame());
+                
+                return;
+        }
+    }
+
+    public void EndAnim()
+    {
+        if (clickcount > 3)
+        {
+            
+            
+        }
+    }
+
+    private IEnumerator LaunchGame()
+    {
+        yield return new WaitForSeconds(1/_clickspeed);
+        yellow.enabled = false;
+        green.enabled = false;
+        red.enabled = false;
+        blue.enabled = false;
+        StartGame();
+    }
+
+    public void StartGame()
+    {
+        started = true;
+        Debug.Log("yay");
+        beatSynchronizer.StartMusic();
+        foreach (var musician in musicians)
+        {
+            musician.RunGame();
+        }
+    }
+
     private int pauseCounter = 3;
+    private static readonly int Jump = Animator.StringToHash("Jump");
+    private float _clickspeed;
+    private static readonly int Start1 = Animator.StringToHash("Start");
+    private static readonly int Combo = Animator.StringToHash("Combo");
+    public AudioClip crowdShort;
 
     private IEnumerator PauseWait()
     {
@@ -135,5 +227,21 @@ public class GameManager : MonoBehaviour
 
         finishTint.Finish(this);
 
+    }
+
+    public int crowdcounter = 0;
+
+    public void CheckCrowd()
+    {
+        crowdcounter++;
+        if (crowdcounter >= 12)
+        { 
+            crowdcounter = 0;
+            if (scoreManager.combo >= 5)
+            {
+                crowdAnimator.SetTrigger(Combo);
+            }
+            
+        }
     }
 }

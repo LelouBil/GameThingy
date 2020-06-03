@@ -59,6 +59,8 @@ public class Musician : MonoBehaviour
 
     public void AdvanceAnim()
     {
+        manager.gameManager.CheckCrowd();
+        
         counter++;
         if (counter >= data.Length)
         {
@@ -107,9 +109,4 @@ public class Musician : MonoBehaviour
         spr.sprite = data[counter] == 1 ? up : down;
     }
     
-
-    public void Jump()
-    {
-        //todo
-    }
 }
