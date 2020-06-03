@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -49,6 +50,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (finished && Input.anyKeyDown)
+        {
+            SceneManager.LoadScene("Menu");
+        }
+
+
         if (beatSynchronizer.audioSource.time >= beatSynchronizer.audioSource.clip.length || Input.GetKeyDown(KeyCode.Space))
         {
             beatSynchronizer.audioSource.Pause();
