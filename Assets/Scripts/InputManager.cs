@@ -25,7 +25,7 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        
+        if (gameManager.paused && gameManager.finished) return;
         if (Input.GetKey(watchFor))
         {
             GetComponent<SpriteRenderer>().color = Color.gray;
