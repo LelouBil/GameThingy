@@ -14,7 +14,7 @@ public class SequenceManager : MonoBehaviour
 
     public void LoadFile()
     {
-        if (!Application.isEditor)
+        if (false)
         {
             textFile = new StreamReader((System.IO.Directory.GetCurrentDirectory()) + "/SequenceFile.txt").ReadToEnd();
 
