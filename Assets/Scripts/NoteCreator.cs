@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class NoteCreator : MonoBehaviour
 {
+    public Sprite Metronome_G;
+    public Sprite Metronome_D;
 
     public SequenceManager SequenceManager;
 
@@ -54,7 +56,7 @@ public class NoteCreator : MonoBehaviour
 
     public void InstNotes()
     {
-        colorIndicator.GetComponent<SpriteRenderer>().color = colorw ? Color.black : Color.white;
+        colorIndicator.GetComponent<SpriteRenderer>().sprite = colorw ? Metronome_G : Metronome_D;
         colorw = !colorw;
         if (SequenceManager.sequences.Count == 0) return;
         var current = SequenceManager.sequences.Dequeue();
