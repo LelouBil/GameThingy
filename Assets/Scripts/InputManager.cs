@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
+    public Sprite Metronome_G;
+    public Sprite Metronome_D;
 
     public Queue<NoteMover> nextNote = new Queue<NoteMover>();
 
