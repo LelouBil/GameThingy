@@ -76,20 +76,19 @@ public class Finisher : MonoBehaviour
 
     private IEnumerator ShowTexts()
     {
-        
-        Show(FinalScoreText);
-        Show(FinalComboText);
+     
         sfx.PlayOneShot(score1);
+        Show(FinalScoreText);
         yield return new WaitForSeconds(1.2f);
-        
-        Show(HighScoreText);
         sfx.PlayOneShot(score2);
+        Show(FinalComboText);
         if (beaten)
         {
             yield return new WaitForSeconds(1.2f);
             Show(BeatHighScoreText);
-            sfx.PlayOneShot(score3);
         }
+        sfx.PlayOneShot(score3);
+        Show(HighScoreText);
         yield return new WaitForSeconds(1.8f);
         Show(HighComboText);
         if (new[] {"B", "A", "S", "GOD"}.Contains(gameManager.scoreManager.rank))
