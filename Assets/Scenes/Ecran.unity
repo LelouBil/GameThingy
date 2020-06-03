@@ -1546,6 +1546,11 @@ MonoBehaviour:
   HighScoreText: {fileID: 684195992}
   HighComboText: {fileID: 1236329475}
   BeatHighScoreText: {fileID: 1718029045}
+  score1: {fileID: 8300000, guid: 940e97cda76f9754a9c16ad6e1a6d293, type: 3}
+  score2: {fileID: 8300000, guid: 2160f85c2da94ed45970a94fe64657fc, type: 3}
+  score3: {fileID: 8300000, guid: 43e3d53134c459c4595e6dde85842c88, type: 3}
+  score4: {fileID: 8300000, guid: 1244c2a1ffb47ce48824b2d254918b10, type: 3}
+  sfx: {fileID: 1302639299}
 --- !u!1 &1097099228
 GameObject:
   m_ObjectHideFlags: 0

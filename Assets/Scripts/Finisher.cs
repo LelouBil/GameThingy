@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -44,6 +46,13 @@ public class Finisher : MonoBehaviour
         Debug.Log("finish");
     }
 
+    public AudioClip score1;
+    public AudioClip score2;
+    public AudioClip score3;
+    public AudioClip score4;
+
+    public AudioSource sfx;
+
     public void RealFinish()
     {
         FinalScoreText.text = "Score final : " + gameManager.scoreManager.score;
@@ -67,18 +76,27 @@ public class Finisher : MonoBehaviour
 
     private IEnumerator ShowTexts()
     {
+        
         Show(FinalScoreText);
-        yield return new WaitForSeconds(0.5f);
         Show(FinalComboText);
-        yield return new WaitForSeconds(0.8f);
-        Show(HighScoreText);
+        sfx.PlayOneShot(score1);
         yield return new WaitForSeconds(1.2f);
-        Show(HighComboText);
+        
+        Show(HighScoreText);
+        sfx.PlayOneShot(score2);
         if (beaten)
         {
             yield return new WaitForSeconds(1.2f);
             Show(BeatHighScoreText);
+            sfx.PlayOneShot(score3);
         }
+        yield return new WaitForSeconds(1.8f);
+        Show(HighComboText);
+        if (new[] {"B", "A", "S", "GOD"}.Contains(gameManager.scoreManager.rank))
+        {
+            sfx.PlayOneShot(score4);
+        }
+        
     }
 
     private void Show(Text text)
