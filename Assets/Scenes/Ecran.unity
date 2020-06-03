@@ -146,7 +146,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 178828094}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.66, y: -0.004999995, z: 0}
+  m_LocalPosition: {x: -1.24, y: -0.004999995, z: 0}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_Children:
   - {fileID: 1306167833}
@@ -1488,6 +1488,7 @@ MonoBehaviour:
   observers:
   - {fileID: 1223170718}
   Creator: {fileID: 1223170719}
+  finished: 0
 --- !u!212 &1223170725
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1853,7 +1854,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1306167832}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.24, y: -0, z: 0}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 178828095}
@@ -2058,6 +2059,7 @@ MonoBehaviour:
   observers:
   - {fileID: 1314247989}
   Creator: {fileID: 0}
+  finished: 0
 --- !u!1 &1466251707
 GameObject:
   m_ObjectHideFlags: 0
