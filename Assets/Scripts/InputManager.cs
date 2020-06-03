@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
-    public Sprite Metronome_G;
-    public Sprite Metronome_D;
-
     public Queue<NoteMover> nextNote = new Queue<NoteMover>();
 
     public KeyCode watchFor;
@@ -28,8 +25,7 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-
-        if (gameManager.paused && gameManager.finished) return;
+        
         if (Input.GetKey(watchFor))
         {
             GetComponent<SpriteRenderer>().color = Color.gray;
