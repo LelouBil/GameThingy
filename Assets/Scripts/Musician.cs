@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using SynchronizerData;
 using UnityEngine;
 
@@ -14,6 +16,10 @@ public class Musician : MonoBehaviour
 
     public Sprite down;
 
+    public NotesData notesData;
+
+    public SpriteRenderer notesRenderer;
+
     public Sprite up;
 
     public Sprite cd;
@@ -28,9 +34,9 @@ public class Musician : MonoBehaviour
 
     public int missCounter = -1;
 
-    private int noteCounter = 0;
-    
-    public Sprite[] noteData = new Sprite[]{};
+    public int noteCounter = -1;
+
+    public List<Sprite> currentNote = new List<Sprite>();
 
 
     public int[] data = new int[] {};
@@ -39,6 +45,7 @@ public class Musician : MonoBehaviour
 
     public void Start()
     {
+        notesData = GetComponentInChildren<NotesData>();
         data = new[] {0, 0, 0, 0, 1, 1, 1, 1};
         manager.musician = this;
         observer = GetComponentInParent<BeatObserver>();
@@ -71,6 +78,32 @@ public class Musician : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, 0);
             missCounter = -1;
         }
+
+        if (noteCounter >= 4)
+        {
+            currentNote = new List<Sprite>();
+            notesRenderer.sprite = null;
+            noteCounter = -1;
+        }
+        
+        if (noteCounter >= 0)
+        {
+            if (currentNote.Count >= 1)
+            {
+                if (noteCounter <= 2)
+                {
+                    notesRenderer.sprite = currentNote.First();
+                }
+                else
+                {
+                    notesRenderer.sprite = currentNote.Last();
+                }
+            }
+            noteCounter++;
+        }
+
+        
+        
         spr.sprite = data[counter] == 1 ? up : down;
     }
     

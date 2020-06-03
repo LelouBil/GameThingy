@@ -41,8 +41,8 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Background
-    uniqueID: 2979775235
+  - name: Fond
+    uniqueID: 4085981021
     locked: 0
   - name: Ecran
     uniqueID: 3729303901
@@ -52,4 +52,10 @@ TagManager:
     locked: 0
   - name: FrontPoints
     uniqueID: 2246198219
+    locked: 0
+  - name: Musiciens
+    uniqueID: 2979775235
+    locked: 0
+  - name: Pause
+    uniqueID: 2525085037
     locked: 0

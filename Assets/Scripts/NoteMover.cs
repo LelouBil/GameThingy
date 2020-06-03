@@ -9,9 +9,9 @@ public class NoteMover : MonoBehaviour
     public float movespeed;
 
     public InputManager Manager;
+    public bool move = true;
 
-    
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +25,6 @@ public class NoteMover : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        transform.position -= new Vector3( (-movespeed) * Time.fixedDeltaTime, 0, 0);
+        if(move) transform.position -= new Vector3( (-movespeed) * Time.fixedDeltaTime, 0, 0);
     }
 }
