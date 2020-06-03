@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
@@ -10,8 +11,13 @@ public class MenuController : MonoBehaviour
 
     public GameObject rulesSplash;
 
-    
-    
+    public Text scoreText;
+
+    private void Start()
+    {
+        scoreText.text = "Meilleur\nscore : " + PlayerPrefs.GetFloat("highscore", 0);
+    }
+
     public void Quiter()
     {
         Application.Quit();

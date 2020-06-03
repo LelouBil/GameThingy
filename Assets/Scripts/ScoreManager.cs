@@ -20,7 +20,7 @@ public class ScoreManager : MonoBehaviour
     public string rank;
 
     public int score;
-    int combo;
+    public int combo;
     public int ScoreMax;
     int comboMax;
 

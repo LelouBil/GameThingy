@@ -70,13 +70,13 @@ public class Finisher : MonoBehaviour
         Show(FinalScoreText);
         yield return new WaitForSeconds(0.5f);
         Show(FinalComboText);
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(0.8f);
         Show(HighScoreText);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.2f);
         Show(HighComboText);
         if (beaten)
         {
-            yield return new WaitForSeconds(2.7f);
+            yield return new WaitForSeconds(1.2f);
             Show(BeatHighScoreText);
         }
     }
