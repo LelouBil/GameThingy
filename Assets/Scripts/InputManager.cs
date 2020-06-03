@@ -21,10 +21,20 @@ public class InputManager : MonoBehaviour
     private List<float> values = new List<float>();
 
     public float average;
+    
     public Musician musician;
 
     private void Update()
     {
+        
+        if (Input.GetKey(watchFor))
+        {
+            GetComponent<SpriteRenderer>().color = Color.gray;
+        }
+        else{
+            GetComponent<SpriteRenderer>().color = Color.white;
+        }
+        
         if (nextNote.Count == 0) return;
         float notAbs = transform.position.x - nextNote.Peek().transform.position.x;
         float distance = Math.Abs(notAbs);
@@ -43,18 +53,7 @@ public class InputManager : MonoBehaviour
             var n = nextNote.Dequeue();
             Destroy(n.gameObject);
         }
-
-        if (Input.GetKey(watchFor))
-        {
-            GetComponent<SpriteRenderer>().color = Color.gray;
-            if (musician != null)
-            {
-                musician.Jump();
-            }
-        }
-        else{
-            GetComponent<SpriteRenderer>().color = Color.white;
-        }
+        
         
         if (distance > 0.117 && notAbs > 0)
         {

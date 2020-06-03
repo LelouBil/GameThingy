@@ -88,16 +88,24 @@ public class BeatCounter : MonoBehaviour {
 	/// required, WaitForSeconds() can be replaced by WaitForFixedUpdate(), which will place this coroutine's execution
 	/// right after FixedUpdate().
 	/// </remarks>
+	///
+	public bool finished = false;
 	IEnumerator BeatCheck ()
 	{
-		while (audioSource.isPlaying) {
-			currentSample = (float)AudioSettings.dspTime * audioSource.clip.frequency;
-			
-			if (currentSample >= (nextBeatSample + sampleOffset)) {
-				foreach (GameObject obj in observers) {
-					obj.GetComponent<BeatObserver>().BeatNotify(beatType);
+		while (!finished) {
+			if (audioSource.isPlaying)
+			{
+				currentSample = (float) AudioSettings.dspTime * audioSource.clip.frequency;
+
+				if (currentSample >= (nextBeatSample + sampleOffset))
+				{
+					foreach (GameObject obj in observers)
+					{
+						obj.GetComponent<BeatObserver>().BeatNotify(beatType);
+					}
+
+					nextBeatSample += samplePeriod;
 				}
-				nextBeatSample += samplePeriod;
 			}
 
 			yield return new WaitForFixedUpdate();

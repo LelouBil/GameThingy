@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -7,13 +8,39 @@ public class SequenceManager : MonoBehaviour
 {
     public TextAsset sequenceFile;
 
+    public string textFile;
+
     public Queue<Sequence> sequences = new Queue<Sequence>();
 
     public void LoadFile()
     {
-        foreach (string s in sequenceFile.text.Split('\n'))
+        if (!Application.isEditor)
         {
-            if(s != "" && s != "\r" && !s.StartsWith("/")) sequences.Enqueue(ParseSequence(s));
+            textFile = new StreamReader((System.IO.Directory.GetCurrentDirectory()) + "/SequenceFile.txt").ReadToEnd();
+
+        }
+        else
+        {
+            textFile = sequenceFile.text;
+        }
+
+        foreach (string s in textFile.Split('\n'))
+        {
+            if (s != "" && s != "\r" && !s.StartsWith("/"))
+            {
+                var seq = ParseSequence(s);
+                int repeat = 1;
+                if (s.Contains("x"))
+                {
+                    repeat = Convert.ToInt32(s.Split('x')[1]);
+                }
+                
+                for (int i = 0; i < repeat; i++)
+                {
+                    sequences.Enqueue(ParseSequence(s));
+                }
+                
+            }
         }
     }
 

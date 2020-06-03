@@ -28,8 +28,16 @@ public class ScoreManager : MonoBehaviour
     {
 
         Debug.Log("Distance : " + time);
-        if (time <= 0.02) {
+        if (time <= 0.02)
+        {
             Popup(excellent);
+            if (manager.musician.currentNote.Count == 0)
+            {
+                manager.musician.currentNote = manager.musician.notesData.excellent;
+
+                manager.musician.noteCounter = 0;
+            }
+
             score = score + 3;
             combo++;
             if (combo >= 11) {
@@ -42,11 +50,23 @@ public class ScoreManager : MonoBehaviour
         else if (time <= 0.04)
         {
             Popup(good);
+            if (manager.musician.currentNote.Count == 0)
+            {
+                manager.musician.currentNote = manager.musician.notesData.good;
+
+                manager.musician.noteCounter = 0;
+            }
             score = score + 2;
         }
         else if (time <= 0.117f)
         {
             Popup(meh);
+            if (manager.musician.currentNote.Count == 0)
+            {
+                manager.musician.currentNote = manager.musician.notesData.meh;
+
+                manager.musician.noteCounter = 0;
+            }
             score++;
         }
         else
@@ -58,6 +78,12 @@ public class ScoreManager : MonoBehaviour
                 manager.musician.transform.rotation = Quaternion.Euler(0, 0, 90);
                 manager.musician.missCounter = 0;
             }
+            if (manager.musician.currentNote.Count == 0)
+            {
+                manager.musician.currentNote = manager.musician.notesData.missed;
+
+                manager.musician.noteCounter = 0;
+            }
 
             Popup(missed);
             combo = 0;
@@ -65,34 +91,34 @@ public class ScoreManager : MonoBehaviour
         ScoreMax = ScoreMax + 3 + comboMax;
         comboMax++;
         if (comboMax >= 11)
-            {
-                comboMax = comboMax - 1;
-            }
-            if (comboMax >= 3)
-            {
-                ScoreMax = ScoreMax + comboMax;
-            }
+        {
+            comboMax = comboMax - 1;
+        }
+        if (comboMax >= 3)
+        {
+            ScoreMax = ScoreMax + comboMax;
+        }
         if (8 * score <= ScoreMax) {
             rank = "E";
-               }
+        }
         if (8 * score >= ScoreMax && 7 * score <= ScoreMax){
             rank = "D";
-               }
+        }
         if (7 * score >= ScoreMax && 6 * score <= ScoreMax) {
             rank = "C";
-               }
+        }
         if (6 * score >= ScoreMax && 4 * score <= ScoreMax){
             rank = "B";
-               }
+        }
         if (4 * score >= ScoreMax && 2 * score <= ScoreMax)
         {
             rank = "A";
-        if (2 * score >= ScoreMax && score < ScoreMax){
+            if (2 * score >= ScoreMax && score < ScoreMax){
                 rank = "S";
-               }
-        if (score==ScoreMax){
+            }
+            if (score==ScoreMax){
                 rank = "GOD";
-               }
+            }
         }
     
     

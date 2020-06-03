@@ -54,6 +54,8 @@ public class NoteCreator : MonoBehaviour
 
     public void InstNotes()
     {
+        colorIndicator.GetComponent<SpriteRenderer>().color = colorw ? Color.black : Color.white;
+        colorw = !colorw;
         if (SequenceManager.sequences.Count == 0) return;
         var current = SequenceManager.sequences.Dequeue();
         
@@ -70,8 +72,6 @@ public class NoteCreator : MonoBehaviour
     public static float goal = -7.34F;
     private void InstNote(NotePair note)
     {
-        colorIndicator.GetComponent<SpriteRenderer>().color = colorw ? Color.black : Color.white;
-        colorw = !colorw;
         var nt = Instantiate(note.prefab,noteParent.transform);
         nt.movespeed = goal / (secPerBeat * preview);
         nt.Manager = note.Manager;
